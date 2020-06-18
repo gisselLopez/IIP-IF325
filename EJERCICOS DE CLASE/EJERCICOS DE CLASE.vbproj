@@ -73,6 +73,18 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ARREGLOS.Designer.vb">
+      <DependentUpon>ARREGLOS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ARREGLOS.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ARREGLOSCLASE.Designer.vb">
+      <DependentUpon>ARREGLOSCLASE.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ARREGLOSCLASE.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +114,7 @@
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -115,6 +128,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ARREGLOS.resx">
+      <DependentUpon>ARREGLOS.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ARREGLOSCLASE.resx">
+      <DependentUpon>ARREGLOSCLASE.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>
@@ -139,6 +158,9 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="TAREAS\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
