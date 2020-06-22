@@ -79,11 +79,13 @@
     <Compile Include="ARREGLOS.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ARREGLOSCLASE.Designer.vb">
+    <Compile Include="..\..\..\..\3D Objects\ARREGLOSCLASE.Designer.vb">
       <DependentUpon>ARREGLOSCLASE.vb</DependentUpon>
+      <Link>ARREGLOSCLASE.Designer.vb</Link>
     </Compile>
-    <Compile Include="ARREGLOSCLASE.vb">
+    <Compile Include="..\..\..\..\3D Objects\ARREGLOSCLASE.vb">
       <SubType>Form</SubType>
+      <Link>ARREGLOSCLASE.vb</Link>
     </Compile>
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
@@ -131,8 +133,9 @@
     <EmbeddedResource Include="ARREGLOS.resx">
       <DependentUpon>ARREGLOS.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ARREGLOSCLASE.resx">
+    <EmbeddedResource Include="..\..\..\..\3D Objects\ARREGLOSCLASE.resx">
       <DependentUpon>ARREGLOSCLASE.vb</DependentUpon>
+      <Link>ARREGLOSCLASE.resx</Link>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
@@ -160,7 +163,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="TAREAS\" />
+    <None Include="Resources\LOGO.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gif ingenieria.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imagen.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

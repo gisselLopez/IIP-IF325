@@ -33,8 +33,8 @@ Partial Class FormMenu
         Me.TimerMostrar = New System.Windows.Forms.Timer(Me.components)
         Me.btnMenu = New System.Windows.Forms.Button()
         Me.PanelLateral = New System.Windows.Forms.Panel()
-        Me.Panelforms = New System.Windows.Forms.Panel()
         Me.BtnProducto = New System.Windows.Forms.Button()
+        Me.Panelforms = New System.Windows.Forms.Panel()
         Me.PanelLateral.SuspendLayout()
         Me.Panelforms.SuspendLayout()
         Me.SuspendLayout()
@@ -116,6 +116,15 @@ Partial Class FormMenu
         Me.PanelLateral.Size = New System.Drawing.Size(193, 362)
         Me.PanelLateral.TabIndex = 8
         '
+        'BtnProducto
+        '
+        Me.BtnProducto.Location = New System.Drawing.Point(0, 110)
+        Me.BtnProducto.Name = "BtnProducto"
+        Me.BtnProducto.Size = New System.Drawing.Size(75, 23)
+        Me.BtnProducto.TabIndex = 6
+        Me.BtnProducto.Text = "Productos"
+        Me.BtnProducto.UseVisualStyleBackColor = True
+        '
         'Panelforms
         '
         Me.Panelforms.Controls.Add(Me.PanelLateral)
@@ -128,15 +137,6 @@ Partial Class FormMenu
         Me.Panelforms.Name = "Panelforms"
         Me.Panelforms.Size = New System.Drawing.Size(490, 365)
         Me.Panelforms.TabIndex = 7
-        '
-        'BtnProducto
-        '
-        Me.BtnProducto.Location = New System.Drawing.Point(0, 110)
-        Me.BtnProducto.Name = "BtnProducto"
-        Me.BtnProducto.Size = New System.Drawing.Size(75, 23)
-        Me.BtnProducto.TabIndex = 6
-        Me.BtnProducto.Text = "Productos"
-        Me.BtnProducto.UseVisualStyleBackColor = True
         '
         'FormMenu
         '
