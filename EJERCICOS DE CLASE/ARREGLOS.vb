@@ -59,5 +59,8 @@
         End If
     End Sub
 
-
+    Private Sub btnejercicio2_Click(sender As Object, e As EventArgs) Handles btnejercicio2.Click
+        openchildren(frmEstudiante)
+        hideSubMenu()
+    End Sub
 End Class
