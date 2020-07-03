@@ -29,21 +29,23 @@ Partial Class MENU
         Me.btnejercicios1 = New System.Windows.Forms.Button()
         Me.btnmenu = New System.Windows.Forms.Button()
         Me.PanelLogo = New System.Windows.Forms.Panel()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panelformulario = New System.Windows.Forms.Panel()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.TimerOcultarMenu = New System.Windows.Forms.Timer(Me.components)
         Me.TimerMostrar = New System.Windows.Forms.Timer(Me.components)
+        Me.btnejercicio3 = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.PanelMenuLateral.SuspendLayout()
         Me.Panelsubmenu.SuspendLayout()
         Me.PanelLogo.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panelformulario.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelMenuLateral
@@ -63,12 +65,14 @@ Partial Class MENU
         '
         Me.Panelsubmenu.AutoScroll = True
         Me.Panelsubmenu.BackColor = System.Drawing.Color.Black
+        Me.Panelsubmenu.Controls.Add(Me.Button1)
+        Me.Panelsubmenu.Controls.Add(Me.btnejercicio3)
         Me.Panelsubmenu.Controls.Add(Me.btnejercicio2)
         Me.Panelsubmenu.Controls.Add(Me.btnejercicios1)
         Me.Panelsubmenu.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panelsubmenu.Location = New System.Drawing.Point(0, 159)
         Me.Panelsubmenu.Name = "Panelsubmenu"
-        Me.Panelsubmenu.Size = New System.Drawing.Size(115, 81)
+        Me.Panelsubmenu.Size = New System.Drawing.Size(115, 170)
         Me.Panelsubmenu.TabIndex = 2
         '
         'btnejercicio2
@@ -129,16 +133,6 @@ Partial Class MENU
         Me.PanelLogo.Size = New System.Drawing.Size(115, 109)
         Me.PanelLogo.TabIndex = 0
         '
-        'PictureBox1
-        '
-        Me.PictureBox1.Image = Global.EJERCICOS_DE_CLASE.My.Resources.Resources.LOGO
-        Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(117, 109)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox1.TabIndex = 0
-        Me.PictureBox1.TabStop = False
-        '
         'Panelformulario
         '
         Me.Panelformulario.BackColor = System.Drawing.Color.MediumOrchid
@@ -186,6 +180,36 @@ Partial Class MENU
         Me.Panel1.Size = New System.Drawing.Size(10, 413)
         Me.Panel1.TabIndex = 1
         '
+        'TimerOcultarMenu
+        '
+        '
+        'TimerMostrar
+        '
+        '
+        'btnejercicio3
+        '
+        Me.btnejercicio3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.btnejercicio3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnejercicio3.Location = New System.Drawing.Point(0, 67)
+        Me.btnejercicio3.Name = "btnejercicio3"
+        Me.btnejercicio3.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
+        Me.btnejercicio3.Size = New System.Drawing.Size(115, 33)
+        Me.btnejercicio3.TabIndex = 2
+        Me.btnejercicio3.Text = "Ejercicio 3"
+        Me.btnejercicio3.UseVisualStyleBackColor = True
+        '
+        'Button1
+        '
+        Me.Button1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.Location = New System.Drawing.Point(0, 100)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
+        Me.Button1.Size = New System.Drawing.Size(115, 33)
+        Me.Button1.TabIndex = 3
+        Me.Button1.Text = "Ejercicio 4"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'PictureBox2
         '
         Me.PictureBox2.Dock = System.Windows.Forms.DockStyle.Fill
@@ -197,11 +221,15 @@ Partial Class MENU
         Me.PictureBox2.TabIndex = 0
         Me.PictureBox2.TabStop = False
         '
-        'TimerOcultarMenu
+        'PictureBox1
         '
-        '
-        'TimerMostrar
-        '
+        Me.PictureBox1.Image = Global.EJERCICOS_DE_CLASE.My.Resources.Resources.LOGO
+        Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(117, 109)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox1.TabIndex = 0
+        Me.PictureBox1.TabStop = False
         '
         'MENU
         '
@@ -218,9 +246,9 @@ Partial Class MENU
         Me.PanelMenuLateral.ResumeLayout(False)
         Me.Panelsubmenu.ResumeLayout(False)
         Me.PanelLogo.ResumeLayout(False)
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panelformulario.ResumeLayout(False)
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -240,4 +268,6 @@ Partial Class MENU
     Friend WithEvents Panel3 As Panel
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Panel1 As Panel
+    Friend WithEvents btnejercicio3 As Button
+    Friend WithEvents Button1 As Button
 End Class

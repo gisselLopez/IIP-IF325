@@ -1,21 +1,22 @@
-﻿Public Class frmEstudiante
+﻿Imports System.ComponentModel
+
+Public Class FrmEstudiante
     ' se instancia la clase conexion.vb con el nombre conexion para ser utilizada dentro del formulario y poder acceder a las funciones
     Dim conexion As conexion = New conexion()
     Dim dt As New DataTable
-    Private Sub frmEstudiante_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub FrmEstudiante_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'en el evento load del formulario se abre la conexion a la base de datos
         'conexion.conectar()
         btnModificar.Enabled = False
         btnEliminar.Enabled = False
         mostrarDatos()
     End Sub
-
     Public Sub Limpiar()
         txtCodigo.Enabled = True
         txtCodigo.Clear()
-        txtNombre.Clear()
+        TxtNombre.Clear()
         txtPrimerApellido.Clear()
-        txtSegApellido.Clear()
+        txtSegundoApellido.Clear()
         txtEdad.Clear()
         btnEliminar.Enabled = False
         btnModificar.Enabled = False
@@ -24,24 +25,10 @@
         'cmbSexo.Items.Clear()
     End Sub
 
-    'Muestra los datos en el datagrid, estos los obtiene de la funcion 'consulta' en la clase conexion.vb
-    Private Sub mostrarDatos()
-        Try
-            'asigna a la variable datatable la consulta realizada a la base de datos y si existen registros los asigna al datagrid'
-            'caso contrario no muestra nada en el datagrid
-            dt = conexion.consulta
-            If dt.Rows.Count <> 0 Then
-                dtgRegistros.DataSource = dt
-                conexion.conexion.Close()
-            Else
-                dtgRegistros.DataSource = Nothing
-                conexion.conexion.Close()
-            End If
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
+    Private Sub btnLimpiar_Click(sender As Object, e As EventArgs) Handles btnLimpiar.Click
+        Limpiar() 'Llama el procedimiento limpiar cajas de texto
     End Sub
-
+    'Muestra los datos en el datagrid, estos los obtiene de la funcion 'consulta' en la clase conexion.vb
 
 
     Private Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
@@ -49,8 +36,8 @@
             'Ejemplo: insert into personas.estudiante 
             'values(36,'Luis','Perez','Martinez',26,'M','IF-325')
             Dim guardar As String =
-             "insert into personas.estudiante values(" + txtCodigo.Text + ",'" + txtNombre.Text + "','" + txtPrimerApellido.Text + "',
-             '" + txtSegApellido.Text + "','" + txtEdad.Text + "','" + cmbSexo.Text + "','" + cmbCodigoClase.Text + "')"
+             "insert into personas.estudiante values(" + txtCodigo.Text + ",'" + TxtNombre.Text + "','" + txtPrimerApellido.Text + "',
+             '" + txtSegundoApellido.Text + "','" + txtEdad.Text + "','" + cmbsexo.Text + "','" + CmbCodigoClase.Text + "')"
 
             If (conexion.insertar(guardar)) Then
                 MessageBox.Show("Guardado")
@@ -60,6 +47,9 @@
             Else
                 MessageBox.Show("Error al guardar")
                 conexion.conexion.Close() 'Cierra conexion, para poder realizar otra operación en el caso que falle la insercion
+            End If
+            If txtCodigo.Text = "" Or txtEdad.Text = "" Or txtPrimerApellido.Text = "" Or txtSegundoApellido.Text = "" Or TxtNombre.Text = "" Or cmbsexo.SelectedIndex = "" Or CmbCodigoClase.SelectedIndex = "" Then
+                MsgBox("debe de llenar los campos solicitados")
             End If
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -84,7 +74,7 @@
         End Try
     End Sub
 
-    Private Sub dtgRegistros_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dtgRegistros.CellContentClick
+    Private Sub DtgRegistros_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DtgRegistros.CellContentClick
         btnGuardar.Enabled = False
         btnModificar.Enabled = True
         btnEliminar.Enabled = True
@@ -99,7 +89,7 @@
             'set nombre='Olman', primerApellido='Mendez', segundoApellido='Mendez', edad=27, codigoClase='IF-325'
             'WHERE codigo ='36'
             Dim modificar As String =
-            "nombre='" + txtNombre.Text + "', primerApellido='" + txtPrimerApellido.Text + "', segundoApellido='" + txtSegApellido.Text + "', edad='" + txtEdad.Text + "', codigoClase='" + cmbCodigoClase.Text + "'"
+            "nombre='" + TxtNombre.Text + "', primerApellido='" + txtPrimerApellido.Text + "', segundoApellido='" + txtSegundoApellido.Text + "', edad='" + txtEdad.Text + "', codigoClase='" + CmbCodigoClase.Text + "'"
             'Se envían 3 parametros;1. tabla,2. el estbalecer los campos que pueden ser modificados,3. la condición
             If (conexion.modificar("personas.estudiante", modificar, " codigo=" + txtCodigo.Text)) Then
                 MessageBox.Show("Actualizado")
@@ -123,26 +113,38 @@
         End If
     End Sub
 
-    Private Sub llenarCampos(e As DataGridViewCellEventArgs)
-        'Rellena los campos en los textbox, asignando de acuerdo a la posicion que se encuentra en el datagrid
+    'Muestra los datos en el datagrid, estos los obtiene de la funcion 'consulta' en la clase conexion.vb
+    Private Sub mostrarDatos()
         Try
-            Dim dtg As DataGridViewRow = dtgRegistros.Rows(e.RowIndex)
-            txtCodigo.Text = dtg.Cells(0).Value.ToString()
-            txtNombre.Text = dtg.Cells(1).Value.ToString()
-            txtPrimerApellido.Text = dtg.Cells(2).Value.ToString()
-            txtSegApellido.Text = dtg.Cells(3).Value.ToString()
-            txtEdad.Text = dtg.Cells(4).Value.ToString()
-            cmbSexo.Text = dtg.Cells(5).Value.ToString()
-            cmbCodigoClase.Text = dtg.Cells(6).Value.ToString()
+            'asigna a la variable datatable la consulta realizada a la base de datos y si existen registros los asigna al datagrid'
+            'caso contrario no muestra nada en el datagrid
+            dt = conexion.consulta
+            If dt.Rows.Count <> 0 Then
+                DtgRegistros.DataSource = dt
+                conexion.conexion.Close()
+            Else
+                DtgRegistros.DataSource = Nothing
+                conexion.conexion.Close()
+            End If
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
     End Sub
-
-    Private Sub btnLimpiar_Click(sender As Object, e As EventArgs) Handles btnLimpiar.Click
-        Limpiar() 'Llama el procedimiento limpiar cajas de texto
+    Private Sub llenarCampos(e As DataGridViewCellEventArgs)
+        'Rellena los campos en los textbox, asignando de acuerdo a la posicion que se encuentra en el datagrid
+        Try
+            Dim dtg As DataGridViewRow = DtgRegistros.Rows(e.RowIndex)
+            txtCodigo.Text = dtg.Cells(0).Value.ToString()
+            TxtNombre.Text = dtg.Cells(1).Value.ToString()
+            txtPrimerApellido.Text = dtg.Cells(2).Value.ToString()
+            txtSegundoApellido.Text = dtg.Cells(3).Value.ToString()
+            txtEdad.Text = dtg.Cells(4).Value.ToString()
+            cmbsexo.Text = dtg.Cells(5).Value.ToString()
+            CmbCodigoClase.Text = dtg.Cells(6).Value.ToString()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
     End Sub
-
     Private Sub mostrarBusqueda()
         'Buscar por codigo ejemplo: select * from personas.estudiante where codigo Like '%88%'
         Try
@@ -151,10 +153,10 @@
             'en el datagrid
             dt = conexion.buscarEstudiante("codigo like '%" + txtCodigo.Text + "%'")
             If dt.Rows.Count <> 0 Then
-                dtgRegistros.DataSource = dt 'Rellena el datagrid
+                DtgRegistros.DataSource = dt 'Rellena el datagrid
                 conexion.conexion.Close()
             Else
-                dtgRegistros.DataSource = Nothing 'No retorna nada, deja vació el datagrid ya que no existe un codigo
+                DtgRegistros.DataSource = Nothing 'No retorna nada, deja vació el datagrid ya que no existe un codigo
                 conexion.conexion.Close()
             End If
         Catch ex As Exception
@@ -166,5 +168,163 @@
     Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
         mostrarBusqueda()
     End Sub
-End Class
 
+
+    Private Sub TxtNombre_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TxtNombre.KeyPress
+        If Char.IsLetter(e.KeyChar) Then
+            e.Handled = False
+        ElseIf Char.IsControl(e.KeyChar) Then
+            e.Handled = False
+        ElseIf Char.IsSeparator(e.KeyChar) Then
+            e.Handled = False
+        Else
+            e.Handled = True
+        End If
+    End Sub
+
+
+    Private Sub txtPrimerApellido_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtPrimerApellido.KeyPress
+        If Char.IsLetter(e.KeyChar) Then
+            e.Handled = False
+        ElseIf Char.IsControl(e.KeyChar) Then
+            e.Handled = False
+        ElseIf Char.IsSeparator(e.KeyChar) Then
+            e.Handled = False
+        Else
+            e.Handled = True
+        End If
+    End Sub
+
+
+    Private Sub txtSegundoApellido_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtSegundoApellido.KeyPress
+        If Char.IsLetter(e.KeyChar) Then
+            e.Handled = False
+        ElseIf Char.IsControl(e.KeyChar) Then
+            e.Handled = False
+        ElseIf Char.IsSeparator(e.KeyChar) Then
+            e.Handled = False
+        Else
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub txtEdad_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtEdad.KeyPress
+        If Char.IsNumber(e.KeyChar) Then
+            e.Handled = False
+        ElseIf Char.IsControl(e.KeyChar) Then
+            e.Handled = False
+        ElseIf Char.IsSeparator(e.KeyChar) Then
+            e.Handled = False
+        Else
+            e.Handled = True
+        End If
+    End Sub
+
+
+    Private Sub txtCodigo_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtCodigo.KeyPress
+        If Char.IsNumber(e.KeyChar) Then
+            e.Handled = False
+        ElseIf Char.IsControl(e.KeyChar) Then
+            e.Handled = False
+        ElseIf Char.IsSeparator(e.KeyChar) Then
+            e.Handled = False
+        Else
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub txtCodigo_Validating(sender As Object, e As CancelEventArgs) Handles txtCodigo.Validating
+        If DirectCast(sender, TextBox).Text.Length > 0 Then
+            Me.ErrorProvider.SetError(sender, "")
+        Else
+            Me.ErrorProvider.SetError(sender, "Es un campo obligatorio")
+        End If
+    End Sub
+
+    Private Sub txtEdad_Validating(sender As Object, e As CancelEventArgs) Handles txtEdad.Validating
+        If DirectCast(sender, TextBox).Text.Length > 0 Then
+            Me.ErrorProvider.SetError(sender, "")
+            If (Val(txtEdad.Text) - Int(Val(txtEdad.Text)) = 0) Then
+                Me.ErrorProvider.SetError(sender, "")
+            Else
+                Me.ErrorProvider.SetError(sender, "Ingrese una edad valida")
+            End If
+        Else
+            Me.ErrorProvider.SetError(sender, "Es un campo obligatorio")
+        End If
+    End Sub
+
+    Private Sub txtSegundoApellido_Validating(sender As Object, e As CancelEventArgs) Handles txtSegundoApellido.Validating
+        If DirectCast(sender, TextBox).Text.Length > 0 Then
+            Me.ErrorProvider.SetError(sender, "")
+        Else
+            Me.ErrorProvider.SetError(sender, "Es un campo obligatorio")
+        End If
+    End Sub
+
+    Private Sub txtPrimerApellido_Validating(sender As Object, e As CancelEventArgs) Handles txtPrimerApellido.Validating
+        If DirectCast(sender, TextBox).Text.Length > 0 Then
+            Me.ErrorProvider.SetError(sender, "")
+        Else
+            Me.ErrorProvider.SetError(sender, "Es un campo obligatorio")
+        End If
+    End Sub
+
+    Private Sub TxtNombre_Validating(sender As Object, e As CancelEventArgs) Handles TxtNombre.Validating
+        If DirectCast(sender, TextBox).Text.Length > 0 Then
+            Me.ErrorProvider.SetError(sender, "")
+        Else
+            Me.ErrorProvider.SetError(sender, "Es un campo obligatorio")
+        End If
+    End Sub
+
+
+
+    Private Sub txtCodigo_MouseHover(sender As Object, e As EventArgs) Handles txtCodigo.MouseHover
+        ToolTip.SetToolTip(txtEdad, "codigo")
+        ToolTip.ToolTipTitle = "Aviso"
+        ToolTip.ToolTipIcon = ToolTipIcon.Info
+    End Sub
+
+
+
+    Private Sub txtEdad_MouseHover(sender As Object, e As EventArgs) Handles txtEdad.MouseHover
+        ToolTip.SetToolTip(txtEdad, "Edad")
+        ToolTip.ToolTipTitle = "Aviso"
+        ToolTip.ToolTipIcon = ToolTipIcon.Info
+    End Sub
+
+
+    Private Sub TxtNombre_MouseHover(sender As Object, e As EventArgs) Handles TxtNombre.MouseHover
+        ToolTip.SetToolTip(txtEdad, "Nombre")
+        ToolTip.ToolTipTitle = "Aviso"
+        ToolTip.ToolTipIcon = ToolTipIcon.Info
+    End Sub
+
+
+
+    Private Sub txtPrimerApellido_MouseHover(sender As Object, e As EventArgs) Handles txtPrimerApellido.MouseHover
+        ToolTip.SetToolTip(txtEdad, "primer Apellido")
+        ToolTip.ToolTipTitle = "Aviso"
+        ToolTip.ToolTipIcon = ToolTipIcon.Info
+    End Sub
+
+    Private Sub txtSegundoApellido_MouseHover(sender As Object, e As EventArgs) Handles txtSegundoApellido.MouseHover
+        ToolTip.SetToolTip(txtEdad, "segundo Apellido")
+        ToolTip.ToolTipTitle = "Aviso"
+        ToolTip.ToolTipIcon = ToolTipIcon.Info
+    End Sub
+
+
+    Private Sub cmbsexo_MouseHover(sender As Object, e As EventArgs) Handles cmbsexo.MouseHover
+        ToolTip.SetToolTip(txtEdad, "su sexo")
+        ToolTip.ToolTipTitle = "Aviso"
+        ToolTip.ToolTipIcon = ToolTipIcon.Info
+    End Sub
+
+    Private Sub CmbCodigoClase_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CmbCodigoClase.SelectedIndexChanged
+        ToolTip.SetToolTip(txtEdad, "Codigo Clase")
+        ToolTip.ToolTipTitle = "Aviso"
+        ToolTip.ToolTipIcon = ToolTipIcon.Info
+    End Sub
+End Class

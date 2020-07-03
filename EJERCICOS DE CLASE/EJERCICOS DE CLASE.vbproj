@@ -95,14 +95,24 @@
       <DependentUpon>Form1.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmArreglosVectores.Designer.vb" />
+    <Compile Include="frmArreglosVectores.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FrmEmpleados.Designer.vb">
       <DependentUpon>FrmEmpleados.vb</DependentUpon>
     </Compile>
     <Compile Include="FrmEmpleados.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEstudiante.Designer.vb" />
-    <Compile Include="frmEstudiante.vb">
+    <Compile Include="FrmEstudiante.Designer.vb">
+      <DependentUpon>FrmEstudiante.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmEstudiante.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLibretaAhorro.Designer.vb" />
+    <Compile Include="frmLibretaAhorro.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmMenu.Designer.vb">
@@ -145,7 +155,11 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmEstudiante.resx" />
+    <EmbeddedResource Include="frmArreglosVectores.resx" />
+    <EmbeddedResource Include="FrmEstudiante.resx">
+      <DependentUpon>FrmEstudiante.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLibretaAhorro.resx" />
     <EmbeddedResource Include="FrmMenu.resx">
       <DependentUpon>FrmMenu.vb</DependentUpon>
     </EmbeddedResource>

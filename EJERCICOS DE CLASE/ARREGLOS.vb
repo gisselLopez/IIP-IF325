@@ -63,4 +63,14 @@
         openchildren(frmEstudiante)
         hideSubMenu()
     End Sub
+
+    Private Sub btnejercicio3_Click(sender As Object, e As EventArgs) Handles btnejercicio3.Click
+        openchildren(frmArreglosVectores)
+        hideSubMenu()
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        openchildren(frmLibretaAhorro)
+        hideSubMenu()
+    End Sub
 End Class
