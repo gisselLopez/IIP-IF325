@@ -1,0 +1,55 @@
+﻿TIENDA.SQL
+
+create database Tienda
+go
+
+create schema factura
+go
+
+create table factura.cliente (
+	idCliente int primary key not null,
+	nombre varchar(25),
+	apellido varchar(25),
+	direccion varchar(50),
+)
+
+
+create table factura.producto(
+	idProducto int primary key not null,
+	nombreProducto varchar(40),
+	descripcion varchar(50)
+)
+
+create table factura.Venta(
+	idVenta int primary key not null,
+	fechaVenta date,
+	precio int,
+	cantidad int,
+	idCliente int foreign key references factura.cliente(idCliente),
+	idProducto int foreign key references factura.producto(idProducto)
+
+)
+insert into factura.cliente (idCliente, nombre, apellido, direccion)
+values(
+1,'Karla', 'Lopez', 'Barrio zaragoza'
+)
+insert into factura.cliente (idCliente, nombre, apellido, direccion)
+values(
+2,'idalia', 'Lopez', 'Barrio zaragoza'
+)
+insert into factura.cliente (idCliente, nombre, apellido, direccion)
+values(
+3,'genesis', 'rivas', 'usa'
+
+)
+select idcliente, nombre, apellido, direccion
+from factura.cliente
+go
+insert into factura.producto(idproducto,nombreProducto, descripcion)
+values(
+1,'samsung a20s' , 'pantalla Infinity-V HD'
+)
+insert into factura.producto(idproducto,nombreProducto, descripcion)
+values(
+1,'samsung a10' , 'Procesador Exynos 7884'
+)

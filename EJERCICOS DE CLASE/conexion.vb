@@ -6,7 +6,7 @@ Public Class conexion
     'Data Source= DESKTOP-FA1HDUQ//el valor de data source varia de acuerdo al nombre del servidor en sql
     'Catalog es el nombre de la base de datos
 
-    Public conexion As SqlConnection = New SqlConnection("Data Source= DESKTOP-FA1HDUQ;Initial Catalog=Ejemplo; Integrated Security=True")
+    Public conexion As SqlConnection = New SqlConnection("Data Source= localhost\MSSQLSERVER02;Initial Catalog=Ejemplo; Integrated Security=True")
     Private cmb As SqlCommandBuilder
     Public ds As DataSet = New DataSet()
     Public da As SqlDataAdapter

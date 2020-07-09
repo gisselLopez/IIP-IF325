@@ -327,4 +327,8 @@ Public Class FrmEstudiante
         ToolTip.ToolTipTitle = "Aviso"
         ToolTip.ToolTipIcon = ToolTipIcon.Info
     End Sub
+
+    Private Sub txtCodigo_TextChanged(sender As Object, e As EventArgs) Handles txtCodigo.TextChanged
+
+    End Sub
 End Class
